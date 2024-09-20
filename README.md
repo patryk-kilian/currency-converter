@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# Currency Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based currency conversion tool that provides real-time currency conversion, similar to Google's currency converter.
 
-Currently, two official plugins are available:
+## Setup Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Install dependencies**
 
-## Expanding the ESLint configuration
+   ```
+   npm install
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. **Set up environment variables**
 
-- Configure the top-level `parserOptions` property like this:
+   - Create a `.env` file in the root directory
+   - Add the following environment variables:
+     ```
+     VITE_CURRENCY_API_KEY=your_api_key_here
+     VITE_CURRENCY_API_BASE_URL=https://api.currencybeacon.com/v1
+     ```
+   - Replace `your_api_key_here` with your actual CurrencyBeacon API key
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+3. **Start the development server**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   ```
+   npm run dev
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+4. **Open the application**
+   - Navigate to `http://localhost:5173` in your web browser
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Available Scripts
+
+- `npm run dev`: Starts the development server
+- `npm run build`: Builds the app for production
+- `npm run lint`: Runs the linter
+- `npm run format`: Formats the code using Prettier
+- `npm run format:check`: Checks if the code is formatted correctly
+
+## Technologies Used
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- CurrencyBeacon API
+
+## Development Notes
+
+I picked Vite for fast builds, Tailwind CSS for quick styling, and made custom hooks to keep the API stuff organized - seemed like the quickest way to get a working currency converter up and running.

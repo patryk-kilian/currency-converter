@@ -1,4 +1,5 @@
 import { useCurrencies } from 'services/use-currencies';
+import CurrencyConverter from './currency-converter';
 
 function App() {
   const { currencies } = useCurrencies();
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <>
-      <div className="mb-4 text-center">hello</div>
+      <CurrencyConverter />
     </>
   );
 }

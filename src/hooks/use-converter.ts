@@ -41,6 +41,7 @@ export const useConverter = () => {
 
   const handleCurrencyChange = (value: string, type: InputType) => {
     setCurrencyValues((prev) => ({ ...prev, [type]: value }));
+    setActiveInput(type);
   };
 
   const performConversion = useCallback(
@@ -66,7 +67,6 @@ export const useConverter = () => {
 
   useEffect(() => {
     const { from: fromCurrency, to: toCurrency } = currencyValues;
-
     if (activeInput === 'from' && debouncedFromAmount) {
       performConversion(
         debouncedFromAmount,
@@ -74,18 +74,17 @@ export const useConverter = () => {
         toCurrency,
         (value) => setAmounts((prev) => ({ ...prev, to: value }))
       );
-    } else if (activeInput === 'to' && debouncedToAmount) {
+    }
+  }, [debouncedFromAmount, currencyValues, activeInput, performConversion]);
+
+  useEffect(() => {
+    const { from: fromCurrency, to: toCurrency } = currencyValues;
+    if (activeInput === 'to' && debouncedToAmount) {
       performConversion(debouncedToAmount, toCurrency, fromCurrency, (value) =>
         setAmounts((prev) => ({ ...prev, from: value }))
       );
     }
-  }, [
-    debouncedFromAmount,
-    debouncedToAmount,
-    currencyValues,
-    activeInput,
-    performConversion,
-  ]);
+  }, [debouncedToAmount, currencyValues, activeInput, performConversion]);
 
   return {
     fromAmount: amounts.from,
